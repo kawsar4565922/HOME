@@ -1,0 +1,67 @@
+#chat-view { background-color: var(--wa-chat-bg); z-index: 60; height: 100dvh; }
+.chat-header {
+    display: flex; align-items: center; gap: 8px; background-color: var(--wa-header-bg);
+    color: var(--wa-icon-color); padding: 10px; flex-shrink: 0; z-index: 10; width: 100%;
+}
+.chat-contact-info { display: flex; align-items: center; gap: 10px; flex: 1; cursor: pointer; }
+.chat-contact-info .item-emoji { width: 40px; height: 40px; font-size: 1.8rem; margin-right: 0; }
+.chat-contact-details .item-name { color: var(--wa-icon-color); font-size: 1.1rem; }
+.chat-contact-details .item-subtext { color: rgba(240, 242, 245, 0.8); font-size: 0.8rem; }
+
+#chat-messages {
+    flex: 1 1 auto; overflow-y: scroll; padding: 16px; display: flex; flex-direction: column; gap: 8px;
+    background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23bdbdbd' fill-opacity='0.15' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E");
+    overscroll-behavior: contain;
+}
+
+.message-bubble {
+    padding: 8px 12px; border-radius: 12px; max-width: 75%; word-wrap: break-word;
+    box-shadow: 0 1px 1px var(--wa-shadow); position: relative;
+    user-select: none; -webkit-user-select: none;
+}
+.message-sent { align-self: flex-end; background-color: var(--wa-message-out-bg); border-top-right-radius: 4px; }
+.message-received { align-self: flex-start; background-color: var(--wa-message-in-bg); border-top-left-radius: 4px; }
+
+.message-content-wrapper { display: flex; align-items: flex-end; }
+.message-text { margin-right: 4px; white-space: pre-wrap; word-break: break-word; display: inline-block; }
+.message-time-status { display: flex; align-items: center; font-size: 0.75rem; color: var(--wa-text-secondary); user-select: none; line-height: 1; margin-left: 8px; flex-shrink: 0; }
+.message-status-icon { width: 14px; height: 14px; margin-left: 4px; fill: var(--wa-text-secondary); }
+.message-status-icon.seen { fill: var(--wa-accent-blue); }
+.message-status-icon.sending { fill: #888; animation: spin 1s linear infinite; transform-origin: center; }
+
+@keyframes spin { 100% { transform: rotate(360deg); } }
+
+#chat-input-container { display: flex; align-items: center; gap: 8px; padding: 8px 12px; background-color: var(--wa-app-bg); flex-shrink: 0; width: 100%; }
+#chat-input { flex: 1; padding: 12px 18px; border: none; border-radius: 24px; font-size: 1rem; height: 48px; resize: none; overflow-y: auto; font-family: 'Roboto', sans-serif; }
+#chat-input:focus { outline: none; }
+
+#chat-send-btn, #voice-record-btn {
+    background-color: var(--wa-button-color); border-radius: 50%; padding: 12px;
+    transition: background-color 0.2s; border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+}
+#chat-send-btn:hover, #voice-record-btn:hover { background-color: #006652; }
+#chat-send-btn svg, #voice-record-btn svg { fill: white; width: 20px; height: 20px; }
+#chat-send-btn:disabled, #voice-record-btn:disabled { background-color: #ccc; cursor: not-allowed; }
+
+#recording-ui {
+    display: flex; align-items: center; background: #fff; padding: 5px 15px;
+    border-radius: 20px; margin-right: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); flex: 1;
+}
+.recording-dot { width: 10px; height: 10px; background-color: red; border-radius: 50%; margin-left: 8px; animation: blink 1s infinite; }
+@keyframes blink { 0% { opacity: 1; } 50% { opacity: 0; } 100% { opacity: 1; } }
+
+.audio-player { width: 200px; height: 40px; }
+#chat-input-container.recording #chat-input { display: none; }
+#chat-input-container.recording #voice-record-btn { background-color: #ffdddd; }
+#chat-input-container.recording #voice-record-btn svg { fill: red; }
+
+#audio-preview-container { display: flex; align-items: center; background: #fff; padding: 5px 10px; border-radius: 24px; flex: 1; gap: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+#audio-preview-container.hidden { display: none; }
+#preview-audio-player { flex: 1; height: 35px; width: 100%; }
+#delete-recording-btn { background: none; border: none; cursor: pointer; padding: 8px; color: var(--call-end-red); display: flex; align-items: center; justify-content: center; }
+#delete-recording-btn svg { fill: var(--call-end-red); width: 20px; height: 20px; }
+
+/* Media Styles */
+.media-bubble { display: flex; align-items: center; gap: 10px; padding: 8px; background: rgba(0,0,0,0.05); border-radius: 10px; cursor: pointer; min-width: 150px; }
+.media-text { font-weight: 500; color: var(--wa-text-primary); }

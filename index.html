@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, interactive-widget=resizes-content">
+    <title>Secret Messaging App</title>
+
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#FF0055">
+    <link rel="apple-touch-icon" href="https://i.postimg.cc/B64K9zC9/20251122-030333.png">
+    <link rel="icon" type="image/png" href="https://i.postimg.cc/B64K9zC9/20251122-030333.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style-global.css">
+    <link rel="stylesheet" href="css/style-lock.css">
+    <link rel="stylesheet" href="css/style-auth.css">
+    <link rel="stylesheet" href="css/style-home.css">
+    <link rel="stylesheet" href="css/style-chat.css">
+    <link rel="stylesheet" href="css/style-modal.css">
+</head>
+<body>
+
+<div id="app-container">
+    <div id="calculator-lock-view" class="view">
+        <div id="calculator-screen">0</div>
+        <div class="calculator-buttons">
+            <button class="calc-btn operator" data-value="C">AC</button>
+            <button class="calc-btn operator" data-value="D">DEL</button>
+            <button class="calc-btn operator" data-value="%">%</button>
+            <button class="calc-btn operator" data-value="/">÷</button>
+            <button class="calc-btn" data-value="7">7</button>
+            <button class="calc-btn" data-value="8">8</button>
+            <button class="calc-btn" data-value="9">9</button>
+            <button class="calc-btn operator" data-value="*">×</button>
+            <button class="calc-btn" data-value="4">4</button>
+            <button class="calc-btn" data-value="5">5</button>
+            <button class="calc-btn" data-value="6">6</button>
+            <button class="calc-btn operator" data-value="-">-</button>
+            <button class="calc-btn" data-value="1">1</button>
+            <button class="calc-btn" data-value="2">2</button>
+            <button class="calc-btn" data-value="3">3</button>
+            <button class="calc-btn operator" data-value="+">+</button>
+            <button class="calc-btn" data-value="0" style="grid-column: span 2;">0</button>
+            <button class="calc-btn" data-value=".">.</button>
+            <button class="calc-btn equals" data-value="=">=</button>
+        </div>
+    </div>
+
+    <div id="auth-view" class="view hidden">
+        <div class="auth-form-container">
+            <h1>SECRET MESSAGING</h1>
+            <p class="auth-developer-subtitle">𝐃𝐄𝐕𝐀𝐋𝐎𝐏𝐄𝐑 𝐊𝐀𝐖𝐒𝐀𝐑</p>
+            <form id="login-form" class="auth-form">
+                <input type="email" id="login-email" placeholder="Email" required>
+                <input type="password" id="login-password" placeholder="Password" required>
+                <button type="submit" class="auth-btn">LOGIN</button>
+                <a id="show-signup" class="auth-link">SIGN UP</a>
+            </form>
+            <form id="signup-form" class="auth-form hidden">
+                <input type="email" id="signup-email" placeholder="Email" required>
+                <input type="password" id="signup-password" placeholder="Password" required>
+                <button type="submit" class="auth-btn">SIGN UP</button>
+                <a id="show-login" class="auth-link">LOGIN</a>
+            </form>
+        </div>
+    </div>
+
+    <div id="main-view" class="view hidden">
+        <header class="main-header">
+            <div class="header-top">
+                <div class="header-title-group">
+                    <h1></h1>
+                    <p class="app-developer">𝐀𝐏𝐏 𝐃𝐄𝐕𝐀𝐋𝐎𝐏𝐄𝐑 𝐊𝐀𝐖𝐒𝐀𝐑</p>
+                </div>
+                <div class="header-top-icons">
+                    <button id="add-friend-btn" class="icon-btn" title="Add Friend"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-9-2V7H4v3H1v2h3v3h2v-3h3v-2H6zm9 4c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></button>
+                    <button id="menu-btn" class="icon-btn" title="Profile"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></button>
+                    <button id="notification-btn" class="icon-btn" title="Notifications">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg>
+                        <span id="notification-badge" class="badge hidden"></span>
+                    </button>
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div id="nav-home" class="nav-tab active">CHATS <span id="chats-badge" class="badge hidden"></span></div>
+                <div id="nav-calls" class="nav-tab">ALL FRIEND</div>
+            </nav>
+        </header>
+        <main id="main-content">
+            <div id="home-content" class="content-panel active"></div>
+            <div id="notifications-content" class="content-panel"></div>
+            <div id="calls-content" class="content-panel"></div>
+        </main>
+        <button id="support-fab-btn" title="Support"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-7 12h-2v-2h2v2zm0-4h-2V6h2v4z"/></svg></button>
+    </div>
+
+    <div id="chat-view" class="view hidden">
+        <header class="chat-header">
+            <button id="chat-back-btn" class="icon-btn" title="Back"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></button>
+            <div id="chat-header-info" class="chat-contact-info">
+                <div id="chat-header-pic-wrapper" class="item-emoji"></div>
+                <div class="chat-contact-details">
+                    <div id="chat-header-name" class="item-name name-with-badge"></div>
+                    <div id="chat-header-status" class="item-subtext"></div>
+                </div>
+            </div>
+            <div class="chat-header-icons"></div>
+        </header>
+        <div id="chat-messages"></div>
+        <footer id="chat-input-container">
+            <div id="recording-ui" class="hidden">
+                <span id="recording-timer">00:00</span>
+                <span class="recording-dot"></span>
+                <button id="cancel-recording-btn" style="color:red;margin-left:10px;border:none;background:none;cursor:pointer;font-weight:bold;">Cancel</button>
+            </div>
+            <div id="audio-preview-container" class="hidden">
+                <button id="delete-recording-btn" title="Delete">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>
+                </button>
+                <audio id="preview-audio-player" controls></audio>
+            </div>
+
+            <button id="attach-media-btn" class="icon-btn" title="Send Media" style="margin-right: 5px;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+            </button>
+
+            <textarea id="chat-input" placeholder="Type a message..." rows="1"></textarea>
+            <button id="voice-record-btn" class="icon-btn" title="Record Voice">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg>
+            </button>
+            <button id="chat-send-btn" class="icon-btn" title="Send">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+            </button>
+        </footer>
+    </div>
+
+    <div id="notification-view" class="view hidden">
+        <header class="neumorphism-header">
+            <button id="notification-back-btn" class="neumorphism-icon-btn"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></button>
+            <h2>Notifications</h2>
+        </header>
+        <main id="notification-list-content"></main>
+    </div>
+
+    <div id="support-view" class="view hidden">
+        <header class="neumorphism-header">
+            <button id="support-back-btn" class="neumorphism-icon-btn"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></button>
+            <h2>Support</h2>
+        </header>
+        <main id="support-messages"></main>
+        <footer id="support-input-container">
+            <input type="text" id="support-input" placeholder="Type your problem...">
+            <button id="support-send-btn"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button>
+        </footer>
+    </div>
+
+    <div id="add-friend-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2>ADD FRIEND</h2>
+            <form id="add-friend-form">
+                <input type="text" id="friend-id-input" placeholder="Friend ID" required>
+                <button type="submit">ADD FRIEND</button>
+                <button type="button" class="close-modal-btn">CANCEL</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="profile-view-modal" class="modal hidden">
+        <div id="profile-view-content" class="modal-content">
+            <h2>SETTINGS</h2>
+            <div class="profile-info-frame">
+                <div id="profile-pic-wrapper" class="item-emoji" title="Click to change picture"></div>
+                <div class="profile-name-wrapper">
+                    <h3 id="profile-view-name">YOUR NAME</h3>
+                    <button id="profile-edit-name-btn" title="Edit Name"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/></svg></button>
+                </div>
+                <div id="profile-edit-name-form" class="hidden">
+                    <input type="text" id="profile-name-input" placeholder="New Name">
+                    <button id="profile-save-name-btn">Save</button>
+                </div>
+                <p id="profile-view-email"></p>
+            </div>
+            <div class="profile-id-frame">
+                <div class="id-wrapper">
+                    <div class="id-text-wrapper"><p>YOUR ID</p><span id="profile-user-id-text"></span></div>
+                    <button id="profile-copy-id-btn" title="Copy ID"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20px" height="20px"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0 -1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button>
+                </div>
+                <div class="id-wrapper" style="margin-top:10px;border-top:1px solid #d1d1d1;padding-top:10px;">
+                    <div class="id-text-wrapper"><p>EMAIL</p><span id="profile-user-email-text"></span></div>
+                    <button id="profile-copy-email-btn" title="Copy Email"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20px" height="20px"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0 -1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button>
+                </div>
+            </div>
+            <div class="profile-blocked-frame"><strong>Blocked Users</strong><div id="blocked-users-list"></div></div>
+            <div class="profile-button-group"><button id="logout-btn">Log Out</button><button type="button" class="close-modal-btn">Close</button></div>
+        </div>
+    </div>
+
+    <div id="custom-prompt-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2 id="prompt-modal-title">Enter Value</h2>
+            <form id="custom-prompt-form"><input type="text" id="prompt-input" placeholder="Value" required><button type="submit">SUBMIT</button><button type="button" class="close-modal-btn">CANCEL</button></form>
+        </div>
+    </div>
+
+    <div id="partner-profile-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2 id="partner-modal-name" class="name-with-badge" style="justify-content:center;font-size:1.6rem;">Friend's Profile</h2>
+            <div class="profile-id-frame">
+                <div class="id-wrapper">
+                    <div class="id-text-wrapper"><p>USER ID</p><span id="partner-modal-id-text"></span></div>
+                    <button id="partner-modal-copy-id-btn" title="Copy ID"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20px" height="20px"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0 -1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button>
+                </div>
+            </div>
+            <div class="profile-button-group"><button type="button" id="partner-modal-delete-chat-btn">Delete Chat</button><button type="button" id="partner-modal-block-btn">Block User</button><button type="button" class="close-modal-btn">Close</button></div>
+        </div>
+    </div>
+
+    <div id="custom-confirm-modal" class="modal hidden">
+        <div class="neumorphism-modal-content"><p id="custom-confirm-message">Are you sure?</p><div class="neumorphism-button-group"><button id="custom-confirm-btn-no">NO</button><button id="custom-confirm-btn-yes">YES</button></div></div>
+    </div>
+
+    <div id="custom-alert-modal" class="modal hidden">
+        <div class="neumorphism-modal-content"><p id="custom-alert-message"></p><div class="neumorphism-button-group"><button id="custom-alert-btn-ok">ঠিক আছে</button></div></div>
+    </div>
+
+    <div id="verified-info-modal" class="modal hidden">
+        <div class="neumorphism-modal-content">
+            <div style="text-align:center;margin-bottom:10px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" style="width:50px;height:50px;fill:var(--wa-accent-blue);"><path d="M6.75 12.13l-3.48-3.48c-.3-.3-.78-.3-1.06 0s-.3.78 0 1.06l4 4c.3.3.78.3 1.06 0l8.5-8.5c.3-.3.3-.78 0-1.06s-.78-.3-1.06 0L6.75 12.13z"/></svg></div>
+            <p id="verified-info-message" style="text-align:center;color:#555;">‎ভেরিফাই ব্যাজ কিছু গুরুত্বপূর্ণ ইউজার কে দেওয়া হয়..!</p>
+            <div class="neumorphism-button-group"><button id="verified-info-btn-ok">ঠিক আছে</button></div>
+        </div>
+    </div>
+
+    <div id="message-options-modal" class="modal hidden">
+        <div class="neumorphism-modal-content">
+            <h3 style="text-align:center;color:#555;margin-bottom:10px;">Message Options</h3>
+            <div class="neumorphism-button-group vertical"><button id="msg-opt-copy">Copy Text</button><button id="msg-opt-delete-me">Delete only me</button><button id="msg-opt-delete-everyone" class="hidden">Delete everyone</button><button id="msg-opt-cancel">Cancel</button></div>
+        </div>
+    </div>
+
+    <div id="pin-setup-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2>গোপন কোড সেট করুন</h2>
+            <p>এটি আপনার সিক্রেট অ্যাপের প্রবেশ কোড হবে। দয়া করে ৪-সংখ্যার কোড দিন।</p>
+            <input type="password" id="pin-input-field" placeholder="৪-সংখ্যার গোপন কোড" maxlength="4" autocomplete="off" inputmode="numeric" required>
+            <button id="set-pin-button">কোড সেট করুন</button>
+            <p id="pin-setup-error" class="error-message"></p>
+        </div>
+    </div>
+
+    <div id="notification-container"></div>
+
+    <div id="media-view-modal" class="modal hidden" style="z-index: 2000;">
+        <div class="modal-content" style="background: #000; width: 100%; height: 100%; max-width: 100%; max-height: 100%; border-radius: 0; display: flex; justify-content: center; align-items: center; position: relative; padding: 0;">
+            <div style="position: absolute; top: 20px; right: 20px; z-index: 10; display: flex; gap: 10px;">
+                 <button id="modal-download-btn" style="background: rgba(0,0,0,0.5); color: white; border: none; font-size: 1.5rem; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="width: 24px; height: 24px; fill: white;"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                </button>
+                <button id="close-media-btn" style="background: rgba(0,0,0,0.5); color: white; border: none; font-size: 2rem; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer;">&times;</button>
+            </div>
+            <div id="media-content-display" style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;"></div>
+        </div>
+    </div>
+    
+    <input type="file" id="media-file-input" accept="image/*,video/*" style="display: none;">
+
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
+<script src="js/js-config.js"></script>
+<script src="js/js-lock.js"></script>
+<script src="js/js-auth.js"></script>
+<script src="js/js-home.js"></script>
+<script src="js/js-chat.js"></script>
+<script src="js/js-profile.js"></script>
+
+</body>
+</html>

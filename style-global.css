@@ -1,0 +1,63 @@
+:root {
+    --wa-header-bg: #FF0055;
+    --wa-accent-blue: #34B7F1;
+    --wa-message-out-bg: #FFF4DF;
+    --wa-message-in-bg: #A5F1F6;
+    --wa-app-bg: #AA00FF;
+    --wa-chat-bg: #0000ff;
+    --wa-icon-color: #f0f2f5;
+    --wa-text-primary: #111b21;
+    --wa-text-secondary: #667781;
+    --wa-border-color: #EFD1D4;
+    --wa-active-tab-indicator: var(--wa-accent-blue);
+    --wa-button-color: #00FF55;
+    --wa-link-color: #00a8e8;
+    --wa-shadow: rgba(17, 27, 33, 0.15);
+    --call-end-red: #e91e63;
+    --modal-bg: #FBE8ED;
+    --modal-border-radius: 20px;
+    --modal-shadow: 12px 12px 24px #bebebe, -12px -12px 24px #ffffff;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Roboto', sans-serif; }
+
+html, body {
+    width: 100%; height: 100%; overflow: hidden;
+    background-color: #d1d7db;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--wa-text-primary);
+}
+
+.hidden { display: none !important; }
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #f1f1ff; }
+::-webkit-scrollbar-thumb { background: #c1c1c1; border-radius: 6px; }
+::-webkit-scrollbar-thumb: hover { background: #a8a8a8; }
+
+#app-container {
+    width: 100%; height: 100%; max-width: 450px; max-height: 950px;
+    background-color: var(--wa-app-bg); border-radius: 8px;
+    box-shadow: 0 4px 12px var(--wa-shadow);
+    display: flex; flex-direction: column; overflow: hidden; position: relative;
+}
+
+/* View Transitions */
+.view {
+    width: 100%; height: 100dvh; display: flex; flex-direction: column;
+    background-color: var(--wa-app-bg); position: absolute; top: 0; left: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease; overflow: hidden;
+}
+
+.view.hidden { transform: translateX(100%); opacity: 0; pointer-events: none; }
+#auth-view.hidden { transform: scale(0.9); opacity: 0; }
+.view:not(.hidden) { transform: translateX(0); opacity: 1; }
+
+/* Common Icon Button */
+.icon-btn {
+    background: none; border: none; cursor: pointer; padding: 8px;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    position: relative;
+}
+.icon-btn svg { width: 24px; height: 24px; fill: var(--wa-icon-color); }
+.icon-btn:hover { background-color: rgba(255, 255, 255, 0.1); }

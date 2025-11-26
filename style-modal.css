@@ -1,0 +1,173 @@
+.modal {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.7); display: flex; align-items: center;
+    justify-content: center; z-index: 1000; max-width: 450px; max-height: 950px; margin: auto;
+}
+
+.modal-content {
+    background: var(--modal-bg); padding: 30px; border-radius: var(--modal-border-radius);
+    width: 90%; max-width: 380px; box-shadow: var(--modal-shadow);
+    display: flex; flex-direction: column; gap: 20px; transform: scale(1);
+    transition: transform 0.3s ease-out; color: #555; border: none;
+}
+.modal.hidden .modal-content { transform: scale(0.95); opacity: 0; }
+.modal-content h2 { font-size: 1.6rem; color: #444; text-align: center; font-weight: 700; margin-bottom: 10px; }
+.modal-content form { display: flex; flex-direction: column; gap: 20px; }
+
+.modal-content input {
+    padding: 15px 20px; border: none; outline: none; background: #f0f2f5;
+    border-radius: 10px; font-size: 1rem; color: #555;
+    box-shadow: inset 6px 6px 12px #bebebe, inset -6px -6px 12px #ffffff;
+}
+.modal-content input:focus { box-shadow: inset 4px 4px 8px #bebebe, inset -4px -4px 8px #ffffff; }
+
+.modal-content button {
+    padding: 15px; background: #f0f2f5; color: #555; border: none; outline: none;
+    border-radius: 10px; font-size: 1rem; font-weight: 700; cursor: pointer;
+    box-shadow: 6px 6px 12px #bebebe, -6px -6px 12px #ffffff; transition: all 0.2s ease-in-out;
+}
+.modal-content button:hover { box-shadow: 8px 8px 16px #bebebe, -8px -8px 16px #ffffff; }
+.modal-content button:active { box-shadow: inset 6px 6px 12px #bebebe, inset -6px -6px 12px #ffffff; color: #333; }
+
+.modal-content button[type="submit"], #profile-save-name-btn { color: var(--wa-button-color); }
+.modal-content .close-modal-btn { color: #555; }
+#logout-btn, #partner-modal-delete-chat-btn, #partner-modal-block-btn { color: var(--call-end-red); }
+.modal-content p { font-size: 1rem; color: #666; text-align: center; }
+
+/* Profile View */
+#profile-view-content { gap: 25px; }
+.profile-info-frame, .profile-id-frame, .profile-blocked-frame {
+    display: flex; flex-direction: column; align-items: center; gap: 15px; padding: 20px;
+    background: #f0f2f5; border-radius: 15px; box-shadow: 8px 8px 16px #bebebe, -8px -8px 16px #ffffff; width: 100%;
+}
+.profile-id-frame { align-items: stretch; }
+
+#profile-pic-wrapper {
+    font-size: 4.5rem; width: 110px; height: 110px; margin: 0; cursor: pointer;
+    color: var(--wa-text-primary); border-radius: 50%; display: flex;
+    align-items: center; justify-content: center;
+    box-shadow: 6px 6px 12px #bebebe, -6px -6px 12px #ffffff;
+}
+#profile-pic-wrapper:active { box-shadow: inset 4px 4px 8px #bebebe, inset -4px -4px 8px #ffffff; }
+#profile-pic-wrapper span { font-size: 4.5rem; }
+
+.profile-name-wrapper { display: flex; align-items: center; gap: 10px; }
+#profile-view-name { font-size: 1.8rem; font-weight: 700; word-break: break-all; display: flex; align-items: center; color: #444; }
+#profile-edit-name-btn {
+    background: #f0f2f5; padding: 8px; border-radius: 50%; border: none; cursor: pointer; display: flex;
+    box-shadow: 5px 5px 10px #bebebe, -5px -5px 10px #ffffff; color: #555;
+}
+#profile-edit-name-btn:active { box-shadow: inset 3px 3px 6px #bebebe, inset -3px -3px 6px #ffffff; }
+#profile-edit-name-btn svg { fill: #555; width: 16px; height: 16px; }
+
+#profile-edit-name-form { display: flex; gap: 8px; margin-top: 5px; width: 100%; }
+#profile-name-input { flex: 1; padding: 10px; border: none; border-radius: 8px; font-size: 1rem; }
+#profile-save-name-btn { padding: 8px 15px; font-size: 0.9rem; }
+#profile-view-email { font-size: 1rem; color: #777; }
+
+.id-wrapper, .email-wrapper { display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 5px 0; }
+.id-text-wrapper, .email-text-wrapper { display: flex; flex-direction: column; gap: 2px; overflow: hidden; }
+.id-text-wrapper p, .email-text-wrapper p { font-size: 0.8rem; color: #777; text-align: left; }
+#profile-user-id-text, #profile-user-email-text { font-size: 0.95rem; font-weight: 500; color: #444; word-break: break-all; }
+
+#profile-copy-id-btn, #profile-copy-email-btn, #partner-modal-copy-id-btn {
+    background: #f0f2f5; border-radius: 50%; padding: 10px; cursor: pointer;
+    flex-shrink: 0; margin-left: 12px; border: none; transition: all 0.2s ease;
+    box-shadow: 5px 5px 10px #bebebe, -5px -5px 10px #ffffff;
+}
+#profile-copy-id-btn:active, #profile-copy-email-btn:active, #partner-modal-copy-id-btn:active {
+    box-shadow: inset 3px 3px 6px #bebebe, inset -3px -3px 6px #ffffff;
+}
+#profile-copy-id-btn svg, #profile-copy-email-btn svg, #partner-modal-copy-id-btn svg { fill: #555; width: 20px; height: 20px; display: block; }
+
+.profile-blocked-frame strong { text-align: center; font-size: 1.1rem; color: #444; margin-bottom: 10px; display: block; }
+#blocked-users-list {
+    max-height: 150px; overflow-y: auto; background: #f0f2f5; border-radius: 10px;
+    border: none; width: 100%; box-shadow: inset 4px 4px 8px #bebebe, -4px -4px 8px #ffffff; padding: 5px;
+}
+.blocked-user-item { display: flex; justify-content: space-between; align-items: center; padding: 10px; border-bottom: 1px solid #e0e0e0; }
+.unblock-btn {
+    font-size: 0.8rem; padding: 6px 12px; background: #f0f2f5; border-radius: 8px;
+    color: var(--wa-link-color); border: none; cursor: pointer;
+    box-shadow: 3px 3px 6px #bebebe, -3px -3px 6px #ffffff;
+}
+.unblock-btn:active { box-shadow: inset 2px 2px 4px #bebebe, inset -2px -2px 4px #ffffff; }
+
+.profile-button-group { display: flex; flex-direction: column; gap: 15px; margin-top: 10px; width: 100%; }
+.name-with-badge { display: flex; align-items: center; overflow: hidden; }
+.item-name-text { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.2; }
+
+/* Neumorphism Modals */
+#custom-confirm-modal .neumorphism-modal-content, #custom-alert-modal .neumorphism-modal-content,
+#verified-info-modal .neumorphism-modal-content, #message-options-modal .neumorphism-modal-content {
+    background: #f0f2f5; border-radius: 20px; padding: 30px 25px;
+    box-shadow: 12px 12px 24px #bebebe, -12px -12px 24px #ffffff;
+    width: 90%; max-width: 360px; display: flex; flex-direction: column; gap: 25px;
+    transform: scale(1); transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+}
+#custom-confirm-modal.hidden .neumorphism-modal-content, #custom-alert-modal.hidden .neumorphism-modal-content,
+#verified-info-modal.hidden .neumorphism-modal-content, #message-options-modal.hidden .neumorphism-modal-content {
+    transform: scale(0.95); opacity: 0;
+}
+
+#custom-confirm-message, #custom-alert-message { font-size: 1.1rem; text-align: center; color: #555; line-height: 1.5; font-weight: 500; word-wrap: break-word; }
+#custom-alert-message { color: var(--call-end-red); }
+
+.neumorphism-button-group { display: flex; justify-content: space-between; gap: 20px; }
+.neumorphism-button-group.vertical { flex-direction: column; gap: 15px; }
+.neumorphism-button-group button {
+    flex: 1; padding: 15px; background: #f0f2f5; border: none; outline: none;
+    border-radius: 10px; font-size: 1rem; font-weight: 700; cursor: pointer;
+    box-shadow: 6px 6px 12px #bebebe, -6px -6px 12px #ffffff; transition: all 0.2s ease-in-out;
+}
+.neumorphism-button-group button:hover { box-shadow: 8px 8px 16px #bebebe, -8px -8px 16px #ffffff; }
+.neumorphism-button-group button:active { box-shadow: inset 6px 6px 12px #bebebe, inset -6px -6px 12px #ffffff; }
+
+#custom-confirm-btn-yes { color: var(--call-end-red); }
+#custom-confirm-btn-no { color: #555; }
+#custom-alert-btn-ok, #verified-info-btn-ok { color: #555; }
+#msg-opt-delete-everyone { color: var(--call-end-red); }
+#msg-opt-delete-me { color: #555; }
+#msg-opt-copy { color: var(--wa-button-color); }
+#msg-opt-cancel { color: #888; }
+
+.verified-badge {
+    display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+    width: 0.85em; height: 0.85em; background-color: var(--wa-accent-blue);
+    border-radius: 50%; margin-left: 5px; box-sizing: border-box; cursor: pointer; z-index: 20;
+}
+.verified-badge svg { width: 70%; height: 70%; fill: white; stroke: none; }
+#profile-view-name .verified-badge { width: 0.8em; height: 0.8em; }
+
+/* Custom Notifications (Toast) */
+#notification-container {
+    position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+    z-index: 10000; display: flex; flex-direction: column; align-items: center;
+    pointer-events: none; max-width: 90%;
+}
+.custom-notification {
+    background-color: rgba(17, 27, 33, 0.9); color: white; padding: 12px 20px;
+    border-radius: 20px; margin-top: 10px; font-size: 0.95rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); opacity: 0;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    transform: translateY(100%); text-align: center; pointer-events: all;
+    display: flex; align-items: center; gap: 10px;
+}
+.custom-notification.show { opacity: 1; transform: translateY(0); }
+.notification-action-buttons { display: flex; gap: 8px; margin-left: 10px; }
+.notification-action-buttons button {
+    background: none; border: 1px solid white; color: white; padding: 4px 10px;
+    border-radius: 12px; font-size: 0.85rem; cursor: pointer; pointer-events: all;
+}
+.notification-action-buttons button:hover { background-color: rgba(255, 255, 255, 0.2); }
+
+#custom-prompt-modal { background: rgba(0, 0, 0, 0.6); }
+#custom-prompt-modal .modal-content { background: #f0f2f5; }
+
+/* Pin Setup Specific */
+#pin-setup-modal .modal-content { background: #f0f2f5; box-shadow: 12px 12px 24px #bebebe, -12px -12px 24px #ffffff; }
+#pin-input-field { width: 100%; padding: 15px; margin: 20px 0 10px; border: none; border-radius: 10px; box-shadow: inset 6px 6px 12px #bebebe, inset -6px -6px 12px #ffffff; font-size: 1.5rem; text-align: center; letter-spacing: 5px; }
+#set-pin-button { width: 100%; padding: 15px; background: var(--wa-button-color); color: white; border: none; outline: none; border-radius: 10px; font-size: 1rem; font-weight: 700; cursor: pointer; box-shadow: 6px 6px 12px #88ff88, -6px -6px 12px #ffffff; transition: all 0.2s ease-in-out; }
+#set-pin-button:hover { box-shadow: 8px 8px 16px #88ff88, -8px -8px 16px #ffffff; }
+#set-pin-button:active { box-shadow: inset 6px 6px 12px #008800, inset -6px -6px 12px #33ff33; }
+#pin-setup-error { color: var(--call-end-red); font-size: 0.9rem; text-align: center; min-height: 1.2em; }
