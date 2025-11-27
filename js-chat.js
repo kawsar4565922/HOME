@@ -24,8 +24,13 @@ const msgOptDeleteMe = document.getElementById('msg-opt-delete-me');
 const msgOptDeleteEveryone = document.getElementById('msg-opt-delete-everyone');
 const msgOptCancel = document.getElementById('msg-opt-cancel');
 
+// --- চ্যাট ওপেন করার ফাংশন (আপডেট করা হয়েছে) ---
 function openChat(p) {
     currentChatPartner = p;
+    
+    // [NEW] কলিং ফিচারের জন্য গ্লোবাল আইডি সেট করা হলো
+    window.currentChatId = p.uid; 
+    
     chatHeaderPicWrapper.innerHTML = getProfilePicHTML(p, '1.8rem');
     chatHeaderName.innerHTML = `<span class="item-name-text">${p.name}</span>${getVerifiedBadgeHTML(p)}`;
     chatMessages.innerHTML = ''; messageElements = {};
@@ -125,7 +130,18 @@ function sendMessage() {
     chatInput.value = ''; chatInput.focus();
 }
 chatSendBtn.addEventListener('click', sendMessage);
-chatBackBtn.addEventListener('click', () => { showView('main-view'); currentChatPartner = null; if (currentChatListener) currentChatListener.off(); resetChatInputUI(); });
+
+// --- ব্যাক বাটনের কোড (আপডেট করা হয়েছে) ---
+chatBackBtn.addEventListener('click', () => { 
+    showView('main-view'); 
+    currentChatPartner = null; 
+    
+    // [NEW] কলিং আইডি রিসেট করা হলো
+    window.currentChatId = null; 
+    
+    if (currentChatListener) currentChatListener.off(); 
+    resetChatInputUI(); 
+});
 
 // Voice Recording Logic
 async function startRecording() {
