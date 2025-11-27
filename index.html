@@ -107,14 +107,21 @@
                     <div id="chat-header-status" class="item-subtext"></div>
                 </div>
             </div>
-            <div class="chat-header-icons"></div>
-        </header>
+            <div class="chat-header-icons">
+                <button id="header-audio-call-btn" class="icon-btn" title="Audio Call">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-2.2 2.2a15.161 15.161 0 0 1-6.59-6.59l2.2-2.21a.96.96 0 0 0 .25-1.01A11.36 11.36 0 0 1 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 13.81 13.81 0 0 0 16 16c.55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/></svg>
+                </button>
+                <button id="header-video-call-btn" class="icon-btn" title="Video Call">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+                </button>
+            </div>
+            </header>
         <div id="chat-messages"></div>
         <footer id="chat-input-container">
             <div id="recording-ui" class="hidden">
                 <span id="recording-timer">00:00</span>
                 <span class="recording-dot"></span>
-                <button id="cancel-recording-btn" style="color:red;margin-left:10px;border:none;background:none;cursor:pointer;font-weight:bold;">Cancel</button>
+                <button id="cancel-recording-btn">Cancel</button>
             </div>
             <div id="audio-preview-container" class="hidden">
                 <button id="delete-recording-btn" title="Delete">
@@ -151,7 +158,13 @@
             <h2>Support</h2>
         </header>
         <main id="support-messages"></main>
+        
         <footer id="support-input-container">
+            <button id="support-attach-btn" title="Send Media">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+            </button>
+            <input type="file" id="support-file-input" accept="image/*,video/*" style="display: none;">
+            
             <input type="text" id="support-input" placeholder="Type your problem...">
             <button id="support-send-btn"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button>
         </footer>
@@ -175,7 +188,7 @@
                 <div id="profile-pic-wrapper" class="item-emoji" title="Click to change picture"></div>
                 <div class="profile-name-wrapper">
                     <h3 id="profile-view-name">YOUR NAME</h3>
-                    <button id="profile-edit-name-btn" title="Edit Name"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/></svg></button>
+                    <button id="profile-edit-name-btn" title="Edit Name"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/></svg></button>
                 </div>
                 <div id="profile-edit-name-form" class="hidden">
                     <input type="text" id="profile-name-input" placeholder="New Name">
@@ -214,6 +227,14 @@
                     <button id="partner-modal-copy-id-btn" title="Copy ID"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20px" height="20px"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0 -1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button>
                 </div>
             </div>
+            <div class="profile-action-buttons" style="display: flex; gap: 15px; justify-content: center; margin-bottom: 20px;">
+                <button id="modal-audio-call-btn" class="neumorphism-icon-btn" style="width: 50px; height: 50px; border-radius: 50%; color: var(--wa-accent-blue);" title="Audio Call">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-2.2 2.2a15.161 15.161 0 0 1-6.59-6.59l2.2-2.21a.96.96 0 0 0 .25-1.01A11.36 11.36 0 0 1 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 13.81 13.81 0 0 0 16 16c.55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/></svg>
+                </button>
+                <button id="modal-video-call-btn" class="neumorphism-icon-btn" style="width: 50px; height: 50px; border-radius: 50%; color: var(--wa-accent-blue);" title="Video Call">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+                </button>
+            </div>
             <div class="profile-button-group"><button type="button" id="partner-modal-delete-chat-btn">Delete Chat</button><button type="button" id="partner-modal-block-btn">Block User</button><button type="button" class="close-modal-btn">Close</button></div>
         </div>
     </div>
@@ -251,6 +272,44 @@
         </div>
     </div>
 
+    <div id="call-interface-modal" class="modal hidden" style="background: #111; z-index: 3000;">
+        <div class="call-content" style="width: 100%; height: 100%; position: relative; display: flex; flex-direction: column;">
+            <video id="remote-video" autoplay playsinline style="width: 100%; height: 100%; object-fit: cover;"></video>
+            
+            <div style="position: absolute; top: 20px; right: 20px; width: 100px; height: 140px; border-radius: 10px; overflow: hidden; border: 2px solid rgba(255,255,255,0.2); box-shadow: 0 4px 15px rgba(0,0,0,0.5);">
+                <video id="local-video" autoplay playsinline muted style="width: 100%; height: 100%; object-fit: cover; transform: scaleX(-1);"></video>
+            </div>
+
+            <div style="position: absolute; top: 40px; left: 0; right: 0; text-align: center; z-index: 10;">
+                <h2 id="call-partner-name" style="color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">Calling...</h2>
+                <p id="call-status" style="color: #ddd; font-size: 0.9rem;">Connecting</p>
+            </div>
+
+            <div class="call-controls" style="position: absolute; bottom: 40px; left: 0; right: 0; display: flex; justify-content: center; gap: 20px; z-index: 10;">
+                <button id="mic-toggle-btn" style="width: 50px; height: 50px; border-radius: 50%; border: none; background: rgba(255,255,255,0.2); backdrop-filter: blur(5px); color: white;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="white"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg>
+                </button>
+                <button id="end-call-btn" style="width: 60px; height: 60px; border-radius: 50%; border: none; background: #ff3b30; color: white; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(255, 59, 48, 0.4);">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30" fill="white"><path d="M12 9c-1.6 0-3.15.25-4.6.72v3.1c0 .39-.23.74-.56.9-.98.49-1.87 1.12-2.66 1.85-.18.18-.43.28-.7.28-.28 0-.53-.11-.71-.29L.29 13.08c-.18-.17-.29-.42-.29-.7 0-.28.11-.53.29-.71C3.34 8.78 7.46 7 12 7s8.66 1.78 11.71 4.67c.18.18.29.43.29.71 0 .28-.11.53-.29.71l-2.48 2.48c-.18.18-.43.29-.71.29-.27 0-.52-.11-.7-.28-.79-.74-1.69-1.36-2.67-1.85-.33-.16-.56-.5-.56-.9v-3.1C15.15 9.25 13.6 9 12 9z"/></svg>
+                </button>
+                <button id="camera-toggle-btn" style="width: 50px; height: 50px; border-radius: 50%; border: none; background: rgba(255,255,255,0.2); backdrop-filter: blur(5px); color: white;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="white"><path d="M15 8v8H5V8h10m1-2H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4V7c0-.55-.45-1-1-1z"/></svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="incoming-call-modal" class="modal hidden">
+        <div class="neumorphism-modal-content" style="text-align: center; background: #e0e5ec; box-shadow: 9px 9px 16px rgb(163,177,198,0.6), -9px -9px 16px rgba(255,255,255, 0.5);">
+            <div id="incoming-caller-pic" class="item-emoji" style="margin: 0 auto 15px auto;"></div>
+            <h3 id="incoming-caller-name">Unknown</h3>
+            <p>Incoming Video Call...</p>
+            <div class="neumorphism-button-group" style="margin-top: 20px;">
+                <button id="reject-call-btn" style="color: #ff3b30;">Decline</button>
+                <button id="accept-call-btn" style="color: #4cd964; font-weight: bold;">Accept</button>
+            </div>
+        </div>
+    </div>
     <div id="notification-container"></div>
 
     <div id="media-view-modal" class="modal hidden" style="z-index: 2000;">
@@ -279,6 +338,6 @@
 <script src="js-home.js"></script>
 <script src="js-chat.js"></script>
 <script src="js-profile.js"></script>
-
+<script src="js-call.js"></script>
 </body>
 </html>

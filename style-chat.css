@@ -10,7 +10,7 @@
 
 #chat-messages {
     flex: 1 1 auto; overflow-y: scroll; padding: 16px; display: flex; flex-direction: column; gap: 8px;
-    background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23bdbdbd' fill-opacity='0.15' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E");
+    /* background-image লাইনটি এখান থেকে সরিয়ে ফেলা হয়েছে */
     overscroll-behavior: contain;
 }
 
@@ -65,3 +65,199 @@
 /* Media Styles */
 .media-bubble { display: flex; align-items: center; gap: 10px; padding: 8px; background: rgba(0,0,0,0.05); border-radius: 10px; cursor: pointer; min-width: 150px; }
 .media-text { font-weight: 500; color: var(--wa-text-primary); }
+
+
+/* =========================================
+   HTML থেকে সরানো আগের স্টাইল 
+   ========================================= */
+
+/* রেকর্ডিং ক্যান্সেল বাটন স্টাইল */
+#cancel-recording-btn {
+    color: red;
+    margin-left: 10px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* সাপোর্ট ভিউ ইনপুট সেকশন স্টাইল */
+#support-input-container {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    gap: 5px;
+}
+
+#support-attach-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #555;
+}
+
+#support-attach-btn svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+}
+
+
+/* =========================================
+   NEW: Audio & Video Call Styles (Messenger Style)
+   ========================================= */
+
+/* 1. Chat Header Icons (Messenger Blue & Layout) */
+.chat-header-icons {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* বাটনগুলোর মাঝে একটু ফাঁকা */
+    margin-right: 5px;
+}
+
+/* কল বাটনগুলোর ডিজাইন */
+.chat-header-icons .icon-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0084ff; /* মেসেঞ্জার ব্লু */
+}
+
+/* আইকনের সাইজ */
+.chat-header-icons .icon-btn svg {
+    width: 26px;
+    height: 26px;
+    fill: currentColor; 
+}
+
+/* মাউস নিলে (Hover) */
+.chat-header-icons .icon-btn:hover {
+    background-color: rgba(0, 132, 255, 0.1); /* হালকা নীল ব্যাকগ্রাউন্ড */
+    transform: scale(1.1);
+}
+
+/* ক্লিক করলে (Active) */
+.chat-header-icons .icon-btn:active {
+    transform: scale(0.95);
+    background-color: rgba(0, 132, 255, 0.2);
+}
+
+
+/* 2. Video Call Interface (Black Screen) */
+#call-interface-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3000; /* অন্য সব কিছুর উপরে */
+    background-color: #000;
+}
+
+/* ভিডিও কন্টেইনার */
+.call-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* বন্ধুর ভিডিও (Remote - Full Screen) */
+#remote-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    background: #222; 
+}
+
+/* নিজের ভিডিও (Local - Small Box) */
+/* HTML এ ইনলাইন স্টাইল আছে, তবে এখানেও ব্যাকআপ রাখা হলো */
+#local-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background: #333;
+    transform: scaleX(-1); /* মিরর ইফেক্ট */
+}
+
+/* কল কন্ট্রোল বাটন এরিয়া (নিচে) */
+.call-controls {
+    padding-bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    width: 100%;
+    position: absolute;
+    bottom: 30px;
+    z-index: 20;
+}
+
+.call-controls button {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.call-controls button:active {
+    transform: scale(0.9);
+}
+
+
+/* 3. Incoming Call Modal (Popup Style) */
+#incoming-call-modal .neumorphism-modal-content {
+    background: #e0e5ec;
+    border-radius: 20px;
+    padding: 30px;
+    width: 85%;
+    max-width: 320px;
+    text-align: center;
+    box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+}
+
+#incoming-caller-pic {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin: 0 auto 15px auto;
+    background-color: #ddd;
+    background-size: cover;
+    background-position: center;
+    box-shadow: 5px 5px 10px #b8b9be, -5px -5px 10px #ffffff;
+}
+
+#incoming-caller-name {
+    margin: 10px 0 5px 0;
+    color: #333;
+    font-size: 1.2rem;
+}
+
+/* 4. Profile Action Buttons (Neumorphism Style) */
+/* সেটিংস বা ফ্রেন্ড প্রোফাইলে কল বাটনগুলো */
+.profile-action-buttons .neumorphism-icon-btn {
+    box-shadow: 6px 6px 10px 0 rgba(163, 177, 198, 0.5), 
+               -6px -6px 10px 0 rgba(255, 255, 255, 0.5);
+    transition: all 0.3s ease;
+    border: none;
+    background: #e0e5ec;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-action-buttons .neumorphism-icon-btn:active {
+    box-shadow: inset 4px 4px 8px 0 rgba(163, 177, 198, 0.5), 
+                inset -4px -4px 8px 0 rgba(255, 255, 255, 0.5);
+}
