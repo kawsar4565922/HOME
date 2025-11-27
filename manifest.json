@@ -1,0 +1,23 @@
+{
+  "name": "Secret Messaging App",
+  "short_name": "Calculator",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#AA00FF",
+  "theme_color": "#FF0055",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "https://i.postimg.cc/B64K9zC9/20251122-030333.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://i.postimg.cc/B64K9zC9/20251122-030333.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

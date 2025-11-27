@@ -3,18 +3,20 @@ const urlsToCache = [
   './',
   './index.html',
   './manifest.json',
-  './css/style-global.css',
-  './css/style-lock.css',
-  './css/style-auth.css',
-  './css/style-home.css',
-  './css/style-chat.css',
-  './css/style-modal.css',
-  './js/js-config.js',
-  './js/js-lock.js',
-  './js/js-auth.js',
-  './js/js-home.js',
-  './js/js-chat.js',
-  './js/js-profile.js',
+  // আগে 'css/' ছিল, এখন নেই
+  './style-global.css',
+  './style-lock.css',
+  './style-auth.css',
+  './style-home.css',
+  './style-chat.css',
+  './style-modal.css',
+  // আগে 'js/' ছিল, এখন নেই
+  './js-config.js',
+  './js-lock.js',
+  './js-auth.js',
+  './js-home.js',
+  './js-chat.js',
+  './js-profile.js',
   'https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap'
 ];
 
@@ -34,7 +36,6 @@ self.addEventListener('fetch', (event) => {
   event.respondWith(
     caches.match(event.request)
       .then((response) => {
-        // Cache hit - return response
         if (response) {
           return response;
         }
